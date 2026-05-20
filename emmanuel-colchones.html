@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emmanuel Colchones – Tu Mejor Descanso</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #0a0a0a;
+    --blanco: #f8f8f8;
+    --celeste: #4a9eca;
+    --celeste-oscuro: #2c7aad;
+    --celeste-claro: #d0eaf8;
+    --gris: #888;
+    --gris-claro: #f0f0f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blanco);
+    color: var(--negro);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 70px;
+    border-bottom: 1px solid rgba(74,158,202,0.3);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--blanco);
+    letter-spacing: 1px;
+  }
+  .nav-logo span { color: var(--celeste); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(248,248,248,0.75);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--celeste); }
+  .nav-cta {
+    background: var(--celeste);
+    color: var(--blanco) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 500 !important;
+  }
+  .nav-cta:hover { background: var(--celeste-oscuro); color: var(--blanco) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--negro);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 70px 5% 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(74,158,202,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-text { z-index: 2; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(74,158,202,0.15);
+    border: 1px solid rgba(74,158,202,0.4);
+    color: var(--celeste);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900;
+    color: var(--blanco);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--celeste);
+  }
+  .hero-sub {
+    color: rgba(248,248,248,0.6);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--celeste);
+    color: var(--blanco);
+    padding: 0.9rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--celeste-oscuro); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--blanco);
+    padding: 0.9rem 2rem;
+    border-radius: 6px;
+    border: 1px solid rgba(248,248,248,0.25);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--celeste); transform: translateY(-2px); }
+
+  .hero-image {
+    position: relative;
+    height: 85vh;
+    animation: fadeIn 0.8s 0.2s ease both;
+  }
+  .hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 16px 0 0 16px;
+    filter: brightness(0.9);
+  }
+  .hero-image::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--negro) 0%, transparent 30%);
+    border-radius: 16px 0 0 16px;
+  }
+
+  /* ── STATS ── */
+  .stats {
+    background: var(--negro);
+    padding: 2rem 5%;
+    display: flex; gap: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--celeste);
+  }
+  .stat-label { color: rgba(248,248,248,0.5); font-size: 0.8rem; letter-spacing: 0.5px; }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 5rem 5%; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--celeste);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--gris); font-size: 1rem; line-height: 1.7; max-width: 480px; }
+
+  /* ── CATEGORIAS ── */
+  .categorias { background: var(--blanco); }
+  .cat-header { margin-bottom: 3rem; }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .cat-card {
+    position: relative; overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+  }
+  .cat-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .cat-card:hover img { transform: scale(1.06); }
+  .cat-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    transition: background 0.3s;
+  }
+  .cat-card:hover .cat-overlay {
+    background: linear-gradient(to top, rgba(44,122,173,0.85) 0%, rgba(0,0,0,0.1) 60%);
+  }
+  .cat-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--celeste-claro);
+    margin-bottom: 0.4rem;
+  }
+  .cat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--blanco);
+  }
+  .cat-desc { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 0.3rem; }
+
+  /* ── PRODUCTOS ── */
+  .productos { background: var(--gris-claro); }
+  .prod-header {
+    display: flex; align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .prod-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .prod-card {
+    background: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .prod-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+  .prod-img {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+  .prod-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .prod-card:hover .prod-img img { transform: scale(1.05); }
+  .prod-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--celeste);
+    color: var(--blanco);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+  }
+  .prod-info { padding: 1.25rem; }
+  .prod-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .prod-desc { color: var(--gris); font-size: 0.85rem; line-height: 1.5; margin-bottom: 1rem; }
+  .prod-footer { display: flex; align-items: center; justify-content: space-between; }
+  .prod-consultar {
+    background: var(--negro);
+    color: var(--blanco);
+    padding: 0.5rem 1.1rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .prod-consultar:hover { background: var(--celeste); }
+  .prod-colores { display: flex; gap: 0.3rem; }
+  .color-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.15);
+  }
+
+  /* ── CABECERAS ── */
+  .cabeceras { background: var(--negro); }
+  .cabeceras .section-title { color: var(--blanco); }
+  .cabeceras .section-label { color: var(--celeste); }
+  .cab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+  .cab-card {
+    position: relative; overflow: hidden;
+    border-radius: 10px;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+  }
+  .cab-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+    filter: brightness(0.85);
+  }
+  .cab-card:hover img { transform: scale(1.08); filter: brightness(1); }
+  .cab-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    padding: 1.5rem 1rem 0.8rem;
+    color: var(--blanco);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  /* ── CONTACTO ── */
+  .contacto {
+    background: var(--celeste);
+    text-align: center;
+    padding: 5rem 5%;
+  }
+  .contacto .section-title { color: var(--blanco); margin-bottom: 0.5rem; }
+  .contacto p { color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 2.5rem; }
+  .contacto-cards {
+    display: flex; gap: 1.5rem; justify-content: center;
+    flex-wrap: wrap;
+  }
+  .contacto-card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    color: var(--blanco);
+    min-width: 200px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .contacto-card:hover { background: rgba(255,255,255,0.25); transform: translateY(-4px); }
+  .contacto-card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .contacto-card-label { font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.75; margin-bottom: 0.4rem; }
+  .contacto-card-value { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+  .contacto-card a { color: var(--blanco); text-decoration: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--negro);
+    padding: 3rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--blanco);
+  }
+  .footer-logo span { color: var(--celeste); }
+  .footer-copy { color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+  .footer-tagline {
+    font-style: italic;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.85rem;
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--blanco);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding-top: 90px; }
+    .hero-image { height: 40vh; }
+    .hero-image img { border-radius: 12px; }
+    .hero-image::after { border-radius: 12px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .stats { flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+    .prod-header { flex-direction: column; align-items: flex-start; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Emmanuel <span>Colchones</span></div>
+  <ul class="nav-links">
+    <li><a href="#categorias">Productos</a></li>
+    <li><a href="#cabeceras">Cabeceras</a></li>
+    <li><a href="#contacto" class="nav-cta">Consultar</a></li>
+  </ul>
+  <div class="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">🌙 Mendoza · Colchones & Sommiers</div>
+    <h1>Tu mejor<br>descanso,<br>los mejores <em>Sueños</em></h1>
+    <p class="hero-sub">Colchones, sommiers y cabeceras tapizadas de calidad. Encontrá el combo ideal para tu cuarto.</p>
+    <div class="hero-btns">
+      <a href="#categorias" class="btn-primary">Ver productos →</a>
+      <a href="#contacto" class="btn-secondary">Consultar precio</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="1000693226.jpg" alt="Colchón Emmanuel" onerror="this.style.background='#1a2a3a';this.removeAttribute('src')">
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Calidad garantizada</div></div>
+  <div class="stat"><div class="stat-num">+10</div><div class="stat-label">Modelos disponibles</div></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Colores en cabeceras</div></div>
+  <div class="stat"><div class="stat-num">🚚</div><div class="stat-label">Entrega a domicilio</div></div>
+</div>
+
+<!-- CATEGORIAS -->
+<section class="categorias" id="categorias">
+  <div class="cat-header">
+    <div class="section-label">Lo que tenemos</div>
+    <div class="section-title">Nuestros productos</div>
+    <p class="section-sub">Desde una plaza hasta king size. Sommiers, colchones y combos completos con cabecera.</p>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <img src="1000693228.jpg" alt="Colchones" onerror="this.style.background='#1a2a3a';this.removeAttribute('src')">
+      <div class="cat-overlay">
+        <div class="cat-tag">Más vendido</div>
+        <div class="cat-name">Colchones</div>
+        <div class="cat-desc">1 plaza, 2 plazas y king size</div>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="1000693216.jpg" alt="Sommiers" onerror="this.style.background='#1a2a3a';this.removeAttribute('src')">
+      <div class="cat-overlay">
+        <div class="cat-tag">Combo completo</div>
+        <div class="cat-name">Sommiers</div>
+        <div class="cat-desc">Base y colchón en un solo conjunto</div>
+      </div>
+    </div>
+    <div class="cat-card">
+      <img src="1000693206.jpg" alt="Cabeceras" onerror="this.style.background='#1a2a3a';this.removeAttribute('src')">
+      <div class="cat-overlay">
+        <div class="cat-tag">Múltiples colores</div>
+        <div class="cat-name">Cabeceras</div>
+        <div class="cat-desc">Tapizadas en tela premium</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="productos" id="productos">
+  <div class="prod-header">
+    <div>
+      <div class="section-label">Catálogo</div>
+      <div class="section-title">Modelos destacados</div>
+    </div>
+  </div>
+  <div class="prod-grid">
+
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="1000693208.jpg" alt="Colchón Premium" onerror="this.style.background='#ddd';this.removeAttribute('src')">
+        <div class="prod-badge">Premium</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Colchón Premium BR</div>
+        <div class="prod-desc">Máximo confort con tecnología de resortes ensacados. Disponible en 2 plazas y king.</div>
+        <div class="prod-footer">
+          <a href="#contacto" class="prod-consultar">Consultar precio</a>
+          <div class="prod-colores">
+            <div class="color-dot" style="background:#444"></div>
+            <div class="color-dot" style="background:#2c7aad"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="1000693210.jpg" alt="Colchón 1 Plaza" onerror="this.style.background='#ddd';this.removeAttribute('src')">
+        <div class="prod-badge">1 Plaza</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Sommier 1 Plaza</div>
+        <div class="prod-desc">Ideal para cuartos chicos o niños. Con base incluida y rueditas para fácil movimiento.</div>
+        <div class="prod-footer">
+          <a href="#contacto" class="prod-consultar">Consultar precio</a>
+          <div class="prod-colores">
+            <div class="color-dot" style="background:#888"></div>
+            <div class="color-dot" style="background:#2c7aad"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="1000693212.jpg" alt="Colchón 1.5 Plaza" onerror="this.style.background='#ddd';this.removeAttribute('src')">
+        <div class="prod-badge">1½ Plaza</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Sommier 1½ Plaza</div>
+        <div class="prod-desc">La opción más versátil. Cómodo para una persona, amplio para dos.</div>
+        <div class="prod-footer">
+          <a href="#contacto" class="prod-consultar">Consultar precio</a>
+          <div class="prod-colores">
+            <div class="color-dot" style="background:#888"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="1000693204.jpg" alt="Colchón 2 Plazas" onerror="this.style.background='#ddd';this.removeAttribute('src')">
+        <div class="prod-badge">2 Plazas</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Sommier 2 Plazas</div>
+        <div class="prod-desc">El más solicitado. Confort para dos personas con estructura robusta.</div>
+        <div class="prod-footer">
+          <a href="#contacto" class="prod-consultar">Consultar precio</a>
+          <div class="prod-colores">
+            <div class="color-dot" style="background:#2c7aad"></div>
+            <div class="color-dot" style="background:#444"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="1000693200.jpg" alt="King Size" onerror="this.style.background='#ddd';this.removeAttribute('src')">
+        <div class="prod-badge">King Size</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Sommier King Size</div>
+        <div class="prod-desc">El lujo del descanso. Amplio, firme y con cabecera a elección incluida.</div>
+        <div class="prod-footer">
+          <a href="#contacto" class="prod-consultar">Consultar precio</a>
+          <div class="prod-colores">
+            <div class="color-dot" style="background:#2c7aad"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-img">
+        <img src="1000693198.jpg" alt="Combo con Cabecera" onerror="this.style.background='#ddd';this.removeAttribute('src')">
+        <div class="prod-badge">Combo</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Combo Sommier + Cabecera</div>
+        <div class="prod-desc">Todo junto: colchón, base y cabecera tapizada a tu gusto. El más elegido.</div>
+        <div class="prod-footer">
+          <a href="#contacto" class="prod-consultar">Consultar precio</a>
+          <div class="prod-colores">
+            <div class="color-dot" style="background:#2c7aad"></div>
+            <div class="color-dot" style="background:#444"></div>
+            <div class="color-dot" style="background:#888"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CABECERAS -->
+<section class="cabeceras" id="cabeceras">
+  <div class="section-label">Personalizá tu cuarto</div>
+  <div class="section-title" style="color:var(--blanco)">Cabeceras tapizadas</div>
+  <p class="section-sub" style="color:rgba(255,255,255,0.55); margin-bottom:0">Disponibles en múltiples colores y estilos. Capitoné clásico o paneles verticales. A medida.</p>
+  <div class="cab-grid">
+    <div class="cab-card">
+      <img src="1000693222.jpg" alt="Cabecera Azul" onerror="this.style.background='#1a2a3a';this.removeAttribute('src')">
+      <div class="cab-label">Capitoné Azul</div>
+    </div>
+    <div class="cab-card">
+      <img src="1000693214.jpg" alt="Cabecera Negra" onerror="this.style.background='#111';this.removeAttribute('src')">
+      <div class="cab-label">Capitoné Negro</div>
+    </div>
+    <div class="cab-card">
+      <img src="1000693218.jpg" alt="Cabecera Gris" onerror="this.style.background='#555';this.removeAttribute('src')">
+      <div class="cab-label">Capitoné Gris</div>
+    </div>
+    <div class="cab-card">
+      <img src="1000693202.jpg" alt="Cabecera Bordo" onerror="this.style.background='#6b1a2a';this.removeAttribute('src')">
+      <div class="cab-label">Capitoné Bordo</div>
+    </div>
+    <div class="cab-card">
+      <img src="1000693206.jpg" alt="Stock Cabeceras" onerror="this.style.background='#222';this.removeAttribute('src')">
+      <div class="cab-label">Varios colores disponibles</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="section-label" style="color:rgba(255,255,255,0.7)">Estamos para ayudarte</div>
+  <div class="section-title">¿Querés saber el precio?</div>
+  <p>Consultanos por WhatsApp o visitanos. Te asesoramos sin compromiso.</p>
+  <div class="contacto-cards">
+    <div class="contacto-card">
+      <div class="contacto-card-icon">📱</div>
+      <div class="contacto-card-label">WhatsApp</div>
+      <div class="contacto-card-value"><a href="#">Próximamente</a></div>
+    </div>
+    <div class="contacto-card">
+      <div class="contacto-card-icon">📍</div>
+      <div class="contacto-card-label">Ubicación</div>
+      <div class="contacto-card-value">Mendoza, Argentina</div>
+    </div>
+    <div class="contacto-card">
+      <div class="contacto-card-icon">🕐</div>
+      <div class="contacto-card-label">Horario</div>
+      <div class="contacto-card-value">Lun–Sáb 9 a 19hs</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Emmanuel <span>Colchones</span></div>
+  <div class="footer-tagline">"Tu descanso no tiene precio"</div>
+  <div class="footer-copy">© 2025 Emmanuel Colchones · Mendoza</div>
+</footer>
+
+<script>
+  // Smooth scroll para nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Hamburger básico (mobile)
+  const ham = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  if (ham) ham.addEventListener('click', () => {
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '70px';
+    navLinks.style.right = '0';
+    navLinks.style.background = 'rgba(10,10,10,0.98)';
+    navLinks.style.padding = '1.5rem 2rem';
+    navLinks.style.borderRadius = '0 0 0 12px';
+    navLinks.style.gap = '1.2rem';
+  });
+
+  // Fade in on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.prod-card, .cat-card, .cab-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
